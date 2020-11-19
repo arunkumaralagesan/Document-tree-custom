@@ -4,7 +4,7 @@ const getSpaceForLevel = (level) => new Array(TAB_SIZE * level).fill(" ").join("
 class Node {
   constructor(name) {
     this.name = name;
-    this.innerHTML = "";
+    this.innerText = "";
     this.childNodes = [];
   }
 
@@ -42,8 +42,8 @@ class VDocument extends Node {
     let currentLevel = level + 1;
     let currentTabSpacing = getSpaceForLevel(level);
     output = `${currentTabSpacing}<${node.name}>\n`;
-    if (node.innerHTML) {
-      output += `${currentTabSpacing}${getSpaceForLevel(1)}${node.innerHTML}\n`;
+    if (node.innerText) {
+      output += `${currentTabSpacing}${getSpaceForLevel(1)}${node.innerText}\n`;
      }
     node.childNodes.forEach((child, index) => {
       output += `${this.renderItemsByLevel(child, currentLevel)}`;
@@ -63,11 +63,11 @@ const vdocument = new VDocument();
 const body = vdocument.createElement('body');
 
 const div1 = vdocument.createElement('div1');
-div1.innerHTML = "oh I am div1!";
+div1.innerText = "oh I am div1!";
 
 const div2 = vdocument.createElement('div2');
 const childDivofDiv2 = vdocument.createElement('div');
-childDivofDiv2.innerHTML = " I am child of div 2!"
+childDivofDiv2.innerText = " I am child of div 2!"
 div2.appendChild(childDivofDiv2);
 
 body.appendChild(div1);
@@ -80,7 +80,7 @@ console.log('-------------- Created Document Rendering Ends --------------\n');
 let querySelectedDiv2 = vdocument.querySelectorByTag('div2');
 
 const div4 = vdocument.createElement('div4');
-div4.innerHTML = "Query selector success!";
+div4.innerText = "Query selector success!";
 querySelectedDiv2.appendChild(div4);
 vdocument.render();
 
